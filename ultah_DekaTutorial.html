@@ -511,8 +511,7 @@
     <script>
       var background = "background.gif";
       var foto = "kucing.jpeg";
-      var musik =
-        "https://dekatutorial.github.io/Gellen%20Martadinata%20-%20Selamat%20Ulang%20Tahun.mp3";
+
       var panggilan = "Happy BirthDay Azka";
       var ucapan =
         "Happy Birthday Azka, I hope that you get everything your heart desires, not only today but always. 💝";
@@ -531,9 +530,31 @@
       $(window).on("load", function () {
         $(".preload").fadeOut("slow");
       });
-      var audio = new Audio(musik);
-      audio.loop = true;
-      audio.autoplay = true;
+      //let musik = ["hbd2.mp3", "hbd.mp3"];
+
+      //var audio = new Audio();
+      //audio.src = musik[j];
+      //audio.loop = false;
+      //audio.autoplay = true;
+
+      var audio = new Audio(),
+        i = 0;
+      var playlist = new Array("hbd.mp3", "hbd2.mp3");
+
+      audio.addEventListener(
+        "ended",
+        function () {
+          i = ++i < playlist.length ? i : 1;
+          console.log(i);
+          audio.src = playlist[i];
+          audio.play();
+        },
+        true
+      );
+      audio.loop = false;
+      audio.src = playlist[0];
+      audio.play();
+
       var bg = document.querySelector(".bg");
       var fotoku = document.querySelector(".foto");
       var hai = document.querySelector(".hai");
